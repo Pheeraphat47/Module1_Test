@@ -2,9 +2,9 @@
 
 class Movies {
   //your code here...
-  
+
   movies = [];
-  constructor(title, director , year , genre) {
+  constructor(title, director, year, genre) {
     this.title = title;
     this.director = director;
     this.year = year;
@@ -15,33 +15,31 @@ class Movies {
     return this.movies;
   }
 
-  addMovie(title , director , year , genre){   
-    if((title && director && year && genre === null) || (title && director && year && genre === undefined)){
+  addMovie(title, director, year, genre) {
+    if ((title && director && year && genre === null) || (title && director && year && genre === undefined)) {
       return undefined
     }
-    if (title === this.title && director === this.director){
+    if (title === this.title && director === this.director) {
       return undefined
-    }else{
-      return this.movies.push(`title: ${title} director: ${director} year: ${year} genre: ${genre}`)
     }
-    
+    return this.movies.push(`title: ${title} director: ${director} year: ${year} genre: ${genre}`)
   }
 
   updateMovie(title, updatedDetails) {
-    movietoUpdate = this.movies.filter((update) => update.title == title);
-    if(movietoUpdate != this.tile){
+    const movietoUpdate = this.movies.filter((update) => update.title == title);
+    if (movietoUpdate != this.title) {
       return undefined
-    }else{
-      return this.movies.push(movietoUpdate , updatedDetails);
+    } else {
+      return this.movies.push(movietoUpdate, updatedDetails);
     }
-    
+
   }
 
-  deleteMovieByTitle(title){
-      deletebytitle = this.movies.filter((movies) => movies.title == title)
-      return deletebytitle.length = 0;     
-  }  
- 
+  deleteMovieByTitle(title) {
+    const deletebytitle = this.movies.filter((movies) => movies.title == title)
+    return deletebytitle.length = 0;
+  }
+
 }
 
 
