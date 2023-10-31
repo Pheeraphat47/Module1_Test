@@ -26,7 +26,7 @@ class Movies {
   }
 
   updateMovie(title, updatedDetails) {
-    const movietoUpdate = this.movies.filter((update) => update.title == title);
+    const movietoUpdate = this.movies.find((update) => update.title == title);
     if (movietoUpdate != this.title) {
       return undefined
     } else {
@@ -36,8 +36,12 @@ class Movies {
   }
 
   deleteMovieByTitle(title) {
-    const deletebytitle = this.movies.filter((movies) => movies.title == title)
-    return deletebytitle.length = 0;
+    const deletebytitle = this.movies.find((movies) => movies.title == title)
+    if(deletebytitle === title){
+      return deletebytitle.length = 0;
+    }else{
+      return "no movie deleted"
+    }
   }
 
 }
