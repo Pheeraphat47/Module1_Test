@@ -1,29 +1,25 @@
 // 65130500053 Pheeraphat Dherachaisuphakij
 
+// นิยามคลาส Movies
 class Movies {
+  // Constructor ที่สร้าง object movies และกำหนดให้เป็น empty array
   constructor() {
-    // creates a new movies object without the provided parameters.
-    // Your constructor must initialize the movies property to an empty array ([]).
     this.movies = [];
   }
 
+  // Method สำหรับดึงข้อมูลหนังทั้งหมด
   getAllMovies() {
-    // Write a program to get all movies
     return this.movies;
   }
 
+  // Method สำหรับเพิ่มหนังใหม่
   addMovie(title, director, year, genre) {
-    // Write a program to add a new movie to the end of array.
-    // If any of the required details are missing, do not add the movie and return undefined.
-    // If a movie with the same title and director (with case insensitive) already exists in the array, do not add the duplicate movie and return undefined.
-    // Otherwise, a new movie object returned.
-
-    // Check if any required details are missing
+    // ตรวจสอบว่าข้อมูลที่จำเป็นไม่หายไป
     if (!title || !director || !year || !genre) {
       return undefined;
     }
 
-    // Check for duplicate movie
+    // ตรวจสอบหนังซ้ำ
     const isDuplicate = this.movies.some(
       (movie) =>
         movie.title.toLowerCase() === title.toLowerCase() &&
@@ -34,17 +30,15 @@ class Movies {
       return undefined;
     }
 
-    // Add new movie to the array
+    // เพิ่มหนังใหม่ลงใน array
     const newMovie = { title, director, year, genre };
     this.movies.push(newMovie);
     return newMovie;
   }
 
+  // Method สำหรับอัปเดตข้อมูลหนัง
   updateMovie(title, updatedDetails) {
-    // Write a program to update the details of a movie on a given title with case insensitive.
-    // If the movie is found in the array, update its details.
-    // If the movie is not found, return undefined.
-
+    // หา index ของหนังที่ต้องการอัปเดต
     const movieIndex = this.movies.findIndex(
       (movie) => movie.title.toLowerCase() === title.toLowerCase()
     );
@@ -53,16 +47,14 @@ class Movies {
       return undefined;
     }
 
-    // Update movie details
+    // อัปเดตข้อมูลหนัง
     this.movies[movieIndex] = { ...this.movies[movieIndex], ...updatedDetails };
     return this.movies[movieIndex];
   }
 
+  // Method สำหรับลบหนังตาม title
   deleteMovieByTitle(title) {
-    // Write a program to delete a movie from the array.
-    // If the movie title is found (with case insensitive) in the array then delete it.
-    // Otherwise, no movie has been deleted.
-
+    // หา index ของหนังที่ต้องการลบ
     const movieIndex = this.movies.findIndex(
       (movie) => movie.title.toLowerCase() === title.toLowerCase()
     );
@@ -71,10 +63,11 @@ class Movies {
       return 'no movie deleted';
     }
 
-    // Delete movie and return the deleted movie object
+    // ลบหนังและคืนค่า object ของหนังที่ถูกลบ
     const deletedMovie = this.movies.splice(movieIndex, 1)[0];
     return deletedMovie;
   }
 }
 
-module.exports = Movies
+// ส่งออกคลาส Movies เพื่อให้นำไปใช้ใน module อื่น
+module.exports = Movies;
