@@ -65,4 +65,31 @@ deleteMovieByCondition(condition, value) {
   }
 }
 
+// update โดยใส่ parameter 4 ตัว
+
+updateMovie(title, updatedYear, updatedDirector, updatedGenre) {
+  // หา index ของหนังที่ต้องการอัปเดต
+  const movieIndex = this.movies.findIndex(
+    (movie) => movie.title.toLowerCase() === title.toLowerCase()
+  );
+
+  if (movieIndex === -1) {
+    return undefined;
+  }
+
+  // อัปเดตข้อมูลหนัง
+  this.movies[movieIndex] = {
+    ...this.movies[movieIndex],
+    year: updatedYear !== undefined ? updatedYear : this.movies[movieIndex].year,
+    director: updatedDirector !== undefined ? updatedDirector : this.movies[movieIndex].director,
+    genre: updatedGenre !== undefined ? updatedGenre : this.movies[movieIndex].genre,
+  };
+
+  return this.movies[movieIndex];
+}
+
+
+
+
+
 
