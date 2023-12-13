@@ -28,3 +28,41 @@ class Movies {
 }
 
 ตัวอย่าง Method get เพิ่มเติม 
+
+Delete หนัง ทุกเรื่อง
+deleteAllMovies() {
+  // Delete all movies and return the array of deleted movies
+  const deletedMovies = this.movies.slice(); // Create a copy of the array
+  this.movies = []; // Clear the array
+  return deletedMovies;
+}
+
+// ลบหนังตามเงื่อนไข
+deleteMovieByCondition(condition, value) {
+  // Write a program to delete a movie from the array based on the specified condition.
+  // If the movie meets the condition, then delete it. Otherwise, no movie has been deleted.
+
+  const lowerCaseCondition = condition.toLowerCase();
+
+  const movieIndex = this.movies.findIndex((movie) => {
+    if (lowerCaseCondition === 'title') {
+      return movie.title.toLowerCase() === value.toLowerCase();
+    } else if (lowerCaseCondition === 'year') {
+      return movie.year === value;
+    } else if (lowerCaseCondition === 'genre') {
+      return movie.genre.toLowerCase() === value.toLowerCase();
+    }
+
+    // Unsupported condition
+    return false;
+  });
+
+  if (movieIndex !== -1) {
+    const deletedMovie = this.movies.splice(movieIndex, 1)[0];
+    return `A movie object ${JSON.stringify(deletedMovie)} is deleted`;
+  } else {
+    return 'No movie deleted';
+  }
+}
+
+
